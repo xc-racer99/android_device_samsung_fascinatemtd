@@ -33,25 +33,25 @@ def FullOTA_Assertions(info):
 
   info.script.AppendExtra(
         ('package_extract_file("updater.sh", "/tmp/updater.sh");\n'
-         'set_perm(0, 0, 0777, "/tmp/updater.sh");'))
+         'set_metadata("/tmp/updater.sh", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
        ('package_extract_file("make_ext4fs", "/tmp/make_ext4fs");\n'
-        'set_perm(0, 0, 0777, "/tmp/make_ext4fs");'))
+        'set_metadata("/tmp/make_ext4fs", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
         ('package_extract_file("busybox", "/tmp/busybox");\n'
-         'set_perm(0, 0, 0777, "/tmp/busybox");'))
+         'set_metadata("/tmp/busybox", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
         ('package_extract_file("flash_image", "/tmp/flash_image");\n'
-         'set_perm(0, 0, 0777, "/tmp/flash_image");'))
+         'set_metadata("/tmp/flash_image", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
         ('package_extract_file("erase_image", "/tmp/erase_image");\n'
-         'set_perm(0, 0, 0777, "/tmp/erase_image");'))
+         'set_metadata("/tmp/erase_image", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
         ('package_extract_file("bml_over_mtd", "/tmp/bml_over_mtd");\n'
-         'set_perm(0, 0, 0777, "/tmp/bml_over_mtd");'))
+         'set_metadata("/tmp/bml_over_mtd", "uid", 0, "gid", 0, "mode", 0777);'))
   info.script.AppendExtra(
         ('package_extract_file("bml_over_mtd.sh", "/tmp/bml_over_mtd.sh");\n'
-         'set_perm(0, 0, 0777, "/tmp/bml_over_mtd.sh");'))
+         'set_metadata("/tmp/bml_over_mtd.sh", "uid", 0, "gid", 0, "mode", 0777);'))
 
   info.script.AppendExtra('package_extract_file("boot.img", "/tmp/boot.img");')
   info.script.AppendExtra('package_extract_file("recovery_kernel", "/tmp/recovery_kernel");')
