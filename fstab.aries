@@ -3,19 +3,20 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-recovery                    /recovery           mtd         defaults                                            recoveryonly
-boot                        /boot               mtd         defaults                                            recoveryonly
-datadata                    /datadata           yaffs2      defaults                                            recoveryonly
+recovery                   /recovery             mtd       defaults                                            recoveryonly
+boot                       /boot                 mtd       defaults                                            recoveryonly
+datadata                   /datadata             yaffs2    defaults                                            recoveryonly
 
 # LVM Volumes
-/dev/lvpool/system         /system               ext4      ro   wait
+/dev/lvpool/system         /system               ext4      ro                                                  wait
 /dev/lvpool/userdata       /data                 ext4      noatime,nodev,nosuid,nomblk_io_submit,errors=panic   wait,encryptable=footer,length=-16384
+/dev/lvpool/userdata       /data                 f2fs      rw,noatime,discard,nosuid,nodev,nodiratime,inline_xattr      wait,encryptable=footer,length=-16384
 
 # cache
-/dev/block/mmcblk0p3       /cache                ext4      noatime,nodev,nosuid,nomblk_io_submit,errors=panic   wait
+/dev/block/mmcblk0p3       /cache                ext4      noatime,nodev,nosuid,nomblk_io_submit,errors=panic  wait
 
 # sdcard
-/devices/platform/s3c-sdhci.2/mmc_host/mmc2 auto auto defaults voldmanaged=sdcard0:auto
+/devices/platform/s3c-sdhci.2/mmc_host/mmc2*     auto      auto defaults voldmanaged=sdcard0:auto,noemulatedsd
 
 # zRAM
-/dev/block/zram0            none                swap        defaults                                            zramsize=134217728
+/dev/block/zram0           none                  swap      defaults                                            zramsize=134217728

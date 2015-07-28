@@ -38,11 +38,18 @@ TARGET_PROVIDES_LIBAUDIO := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/fascinatemtd/bluetooth
 
 # Kernel Config
-TARGET_KERNEL_CONFIG := cyanogenmod_fascinatemtd_defconfig
+TARGET_KERNEL_CONFIG := omni_fascinatemtd_defconfig
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1665130496
 
 # Recovery
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/fascinatemtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
-TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/fstab.aries
+TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/twrp.aries
+
+#TWRP
+undefine TW_INTERNAL_STORAGE_PATH
+undefine TW_INTERNAL_STORAGE_MOUNT_POINT
+TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_DEFAULT_EXTERNAL_STORAGE := true

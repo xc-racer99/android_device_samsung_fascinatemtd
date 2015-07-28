@@ -1,0 +1,17 @@
+[
+  {
+    "repository": "xc-racer99/android_device_samsung_aries-common",
+    "target_path": "device/samsung/aries-common",
+    "revision":     "android-5.1"
+  },
+  {
+    "repository": "xc-racer99/android_kernel_samsung_aries",
+    "target_path": "kernel/samsung/aries",
+    "revision":     "android-5.1"
+  },
+  {
+    "repository": "android_hardware_samsung",
+    "target_path": "hardware/samsung",
+    "revision":     "android-5.1"
+  }
+]

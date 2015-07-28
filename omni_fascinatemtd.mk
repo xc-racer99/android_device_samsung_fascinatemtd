@@ -19,19 +19,31 @@
 # product configuration (apps).
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-# This is where we'd set a backup provider if we had one
-#$(call inherit-product, device/sample/products/backup_overlay.mk)
-$(call inherit-product, device/samsung/fascinatemtd/fascinatemtd.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
+# low ram device
+TARGET_LOW_RAM_DEVICE := true
 
-# Galaxy S uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inhert CDMA parts
+$(call inherit-product, vendor/omni/config/cdma.mk)
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Bootanimation
+TARGET_BOOTANIMATION_SIZE := 480x320
+
+# Inherit device configuration
+$(call inherit-product, device/samsung/fascinatemtd/fascinatemtd.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_fascinatemtd
+PRODUCT_RELEASE_NAME := Fascinate
+PRODUCT_NAME := omni_fascinatemtd
 PRODUCT_DEVICE := fascinatemtd
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SCH-I500
+
+#Set build fingerprint / ID / Prduct Name ect.
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=SCH-I500 TARGET_DEVICE=SCH-I500 BUILD_FINGERPRINT=verizon/SCH-I500/SCH-I500:2.3.5/GINGERBREAD/EI20:user/release-keys PRIVATE_BUILD_DESC="SCH-I500-user 2.3.5 GINGERBREAD EI20 release-keys"
