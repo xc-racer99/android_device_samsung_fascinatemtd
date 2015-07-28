@@ -6,6 +6,11 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= \
 	AudioHardware.cpp
 
+LOCAL_CFLAGS := \
+	-Wno-missing-field-initializers \
+	-Wno-unused-parameter \
+	-Wno-extra
+
 LOCAL_MODULE := audio.primary.aries
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_STATIC_LIBRARIES:= libmedia_helper
@@ -24,6 +29,10 @@ LOCAL_C_INCLUDES += \
 	external/tinyalsa/include \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils)
+
+ifeq ($(BOARD_USES_FROYO_RILCLIENT),true)
+  LOCAL_CFLAGS += -DUSES_FROYO_RILCLIENT
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 

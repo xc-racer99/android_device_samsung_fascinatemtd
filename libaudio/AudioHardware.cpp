@@ -163,6 +163,13 @@ AudioStreamOut* AudioHardware::openOutputStream(
     return out.get();
 }
 
+AudioStreamOut* AudioHardware::openOutputStreamWithFlags(
+    uint32_t devices, audio_output_flags_t flags, int *format,
+    uint32_t *channels, uint32_t *sampleRate, status_t *status)
+{
+    return openOutputStream(devices, format, channels, sampleRate, status);
+}
+
 void AudioHardware::closeOutputStream(AudioStreamOut* out) {
     sp <AudioStreamOutALSA> spOut;
     sp<AudioStreamInALSA> spIn;
@@ -1241,6 +1248,38 @@ status_t AudioHardware::AudioStreamOutALSA::getRenderPosition(uint32_t *dspFrame
     return INVALID_OPERATION;
 }
 
+status_t AudioStreamOut::getPresentationPosition(uint64_t *frames,
+    struct timespec *timestamp)
+{
+    //TODO
+    return INVALID_OPERATION;
+}
+
+status_t AudioHardware::setMasterMute(bool muted) {
+    return INVALID_OPERATION;
+}
+
+int AudioHardware::createAudioPatch(unsigned int num_sources,
+        const struct audio_port_config *sources,
+        unsigned int num_sinks,
+        const struct audio_port_config *sinks,
+        audio_patch_handle_t *handle) {
+    return INVALID_OPERATION;
+}
+
+int AudioHardware::releaseAudioPatch(audio_patch_handle_t handle) {
+    return INVALID_OPERATION;
+}
+
+int AudioHardware::getAudioPort(struct audio_port *port) {
+    return INVALID_OPERATION;
+}
+
+int AudioHardware::setAudioPortConfig(
+        const struct audio_port_config *config) {
+    return INVALID_OPERATION;
+}
+
 int AudioHardware::AudioStreamOutALSA::prepareLock()
 {
     // request sleep next time write() is called so that caller can acquire
@@ -1427,7 +1466,7 @@ ssize_t AudioHardware::AudioStreamInALSA::processFrames(void* buffer, ssize_t fr
                 {mProcBuf}
         };
         audio_buffer_t outBuf = {
-                frames - framesWr,
+                (size_t)(frames - framesWr),
                 {(int16_t *)buffer + framesWr * mChannelCount}
         };
 

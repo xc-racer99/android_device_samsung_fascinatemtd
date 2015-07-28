@@ -39,10 +39,17 @@
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
 
+# This device is hdpi
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_LOCALES += hdpi
+
 # ramdisk files
 PRODUCT_COPY_FILES += \
 	device/samsung/fascinatemtd/init.aries.rc:root/init.aries.rc \
-	device/samsung/fascinatemtd/fstab.aries:root/fstab.aries \
+	device/samsung/fascinatemtd/updater.sh:updater.sh \
+	device/samsung/fascinatemtd/twrp.fstab:root/twrp.fstab \
+	device/samsung/fascinatemtd/fstab.aries:root/fstab.aries
 
 # hak
 PRODUCT_COPY_FILES += \
