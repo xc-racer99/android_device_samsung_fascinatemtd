@@ -45,7 +45,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 1665130496
 # Recovery
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/fascinatemtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
-TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/twrp.aries
+TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/fstab.aries
 
 #TWRP
 undefine TW_INTERNAL_STORAGE_PATH
