@@ -48,7 +48,7 @@ PRODUCT_LOCALES += hdpi
 PRODUCT_COPY_FILES += \
 	device/samsung/fascinatemtd/init.aries.rc:root/init.aries.rc \
 	device/samsung/fascinatemtd/updater.sh:updater.sh \
-	device/samsung/fascinatemtd/twrp.fstab:root/twrp.fstab \
+	device/samsung/aries-common/twrp.fstab:recovery/root/etc/twrp.fstab \
 	device/samsung/fascinatemtd/fstab.aries:root/fstab.aries
 
 # hak
