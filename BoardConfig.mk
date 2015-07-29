@@ -42,6 +42,11 @@ TARGET_KERNEL_CONFIG := omni_fascinatemtd_defconfig
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1665130496
 
+# SELinux
+BOARD_SEPOLICY_DIRS := $(filter-out device/samsung/aries-common/sepolicy,$BOARD_SEPOLICY_DIRS)
+BOARD_SEPOLICY_DIRS += \
+	device/samsung/fascinatemtd/sepolicy
+
 # Recovery
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/fascinatemtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
