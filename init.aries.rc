@@ -64,9 +64,6 @@ on property:ril.cdma.data_state=1
 on property:ril.cdma.data_state=0
     stop pppd_cdma
 
-on property:ril.bt_macaddr=*
-    start bdaddr
-
 on fs
 #   LVM: set up LVM volumes
     wait /sys/dev/block/179:0
@@ -169,6 +166,14 @@ on post-fs
     chown system system /datadata
     chmod 0771 /datadata
     restorecon_recursive /datadata
+
+#   Allow system to modify cpufreq control files
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
 #   For sensor control
     chown root input /sys/class/input/input0/enable
@@ -277,6 +282,10 @@ on post-fs-data
 #   Download cache
     mkdir /data/download 0770 system cache
 
+#   Logs
+    mkdir /data/log 0775 root root
+    chmod 0775 /data/log
+
     setprop vold.post_fs_data_done 1
 
 # Setup /datadata
@@ -354,6 +363,28 @@ service pppd_cdma /system/bin/pppd_runner
     disabled
     oneshot
 
+service bdaddr /system/bin/bdaddr_read
+    class main
+    user root
+    group system bluetooth
+    disabled
+    oneshot
+
+service charger /sbin/healthd
+    class charger
+    critical
+    seclabel u:r:healthd:s0
+
+on property:ril.bt_macaddr=*
+    start bdaddr
+
+# bugreport is triggered by holding down volume down, volume up and power
+# service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+#     class main
+#     disabled
+#     oneshot
+#     keycodes 114 115 116
+
 service orientationd /system/vendor/bin/orientationd
     class main
     user compass
@@ -368,15 +399,3 @@ service gpsd /system/vendor/bin/gpsd
     class main
     user system
     group system inet
-
-service bdaddr /system/bin/bdaddr_read
-    class main
-    user root
-    group system bluetooth
-    disabled
-    oneshot
-
-service charger /sbin/healthd
-    class charger
-    critical
-    seclabel u:r:healthd:s0
