@@ -38,10 +38,4 @@ DEVICE_PACKAGE_OVERLAYS := device/samsung/fascinatemtd/overlay
 
 $(call inherit-product, device/samsung/fascinatemtd/device.mk)
 
-# Verizon cdma stuff
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.cdma.home.operator.numeric=310004 \
-       ro.cdma.home.operator.alpha=Verizon \
-       net.cdma.pppd.user=user[SPACE]VerizonWireless
-
 TARGET_OTA_ASSERT_DEVICE := aries,fascinate,fascinatemtd,SCH-I500

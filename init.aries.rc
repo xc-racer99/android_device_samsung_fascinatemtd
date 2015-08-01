@@ -22,10 +22,6 @@ on init
 
     mkdir /datadata 0771 system system
 
-#   We will create our own ril-daemon service in class 'core' because the
-#   rild doesn't like being killed. (During device encryption.)
-    stop ril-daemon
-
 on boot
 
     setprop ro.build.product aries
@@ -57,12 +53,6 @@ on boot
  
 #   Prevents permission denied error for telephony
     chmod 0644 /proc/cmdline
-
-on property:ril.cdma.data_state=1
-    restart pppd_cdma
-  
-on property:ril.cdma.data_state=0
-    stop pppd_cdma
 
 on fs
 #   LVM: set up LVM volumes
@@ -293,13 +283,6 @@ service setup_datadata /sbin/setupdatadata.sh
     disabled
     oneshot
 
-service aries-ril-daemon /system/bin/rild
-    class core
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio log
-
 # 3D init
 service pvrsrvinit /system/bin/pvrsrvinit
     class core
@@ -353,13 +336,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
 
 service iprenew_bt-pan /system/bin/dhcpcd -n
     class main
-    disabled
-    oneshot
-
-service pppd_cdma /system/bin/pppd_runner
-    class main
-    user root
-    group radio cache inet misc system
     disabled
     oneshot
 

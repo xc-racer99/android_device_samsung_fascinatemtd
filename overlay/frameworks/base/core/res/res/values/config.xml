@@ -26,15 +26,9 @@
     <integer-array translatable="false" name="config_tether_upstream_types">
         <item>0</item>
         <item>1</item>
-        <item>4</item>
         <item>5</item>
         <item>7</item>
     </integer-array>
-    <!-- The default iface on which to monitor data use -->
-    <string name="config_datause_iface">ppp0</string>
-
-    <!-- If this value is true, we handle Samsung CDMA's message ID method -->
-    <!--bool name="config_smsSamsungCdmaAlternateMessageIDEncoding">true</bool-->
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">false</bool>
