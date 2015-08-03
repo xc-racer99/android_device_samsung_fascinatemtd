@@ -243,7 +243,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # ART
 PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
-    --compiler-filter=interpret-only
+    --compiler-filter=balanced
 
 # decoy recovery kernel
 PRODUCT_COPY_FILES += \
