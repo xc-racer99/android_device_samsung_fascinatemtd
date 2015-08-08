@@ -62,7 +62,9 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-    device/samsung/aries-common/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
+    device/samsung/fascinatemtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
+    device/samsung/fascinatemtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
+    device/samsung/fascinatemtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
     device/samsung/aries-common/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
     device/samsung/aries-common/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
     device/samsung/aries-common/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
