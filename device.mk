@@ -56,6 +56,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/fstab.aries:root/fstab.aries \
     device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
     device/samsung/aries-common/setupdatadata.sh:root/sbin/setupdatadata.sh \
+    device/samsung/aries-common/umountdatadata.sh:root/sbin/umountdatadata.sh \
     device/samsung/aries-common/bml_over_mtd.sh:bml_over_mtd.sh \
     device/samsung/fascinatemtd/updater.sh:updater.sh \
     device/samsung/fascinatemtd/twrp.fstab:recovery/root/etc/twrp.fstab
