@@ -44,20 +44,10 @@ PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_LOCALES += hdpi
 
-DEVICE_PACKAGE_OVERLAYS := device/samsung/aries-common/overlay
-
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/init.aries.rc:root/init.aries.rc \
-    device/samsung/aries-common/init.trace.rc:root/init.trace.rc \
-    device/samsung/aries-common/init.aries.usb.rc:root/init.aries.usb.rc \
-    device/samsung/aries-common/init.recovery.aries.rc:root/init.recovery.aries.rc \
-    device/samsung/aries-common/init.aries.usb.rc:recovery/root/usb.rc \
     device/samsung/fascinatemtd/fstab.aries:root/fstab.aries \
-    device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
-    device/samsung/aries-common/setupdatadata.sh:root/sbin/setupdatadata.sh \
-    device/samsung/aries-common/umountdatadata.sh:root/sbin/umountdatadata.sh \
-    device/samsung/aries-common/bml_over_mtd.sh:bml_over_mtd.sh \
     device/samsung/fascinatemtd/updater.sh:updater.sh \
     device/samsung/fascinatemtd/twrp.fstab:recovery/root/etc/twrp.fstab
 
@@ -65,198 +55,51 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/aries-keypad.kl:system/usr/keylayout/aries-keypad.kl \
     device/samsung/fascinatemtd/aries-keypad.kcm:system/usr/keychars/aries-keypad.kcm \
-    device/samsung/fascinatemtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
-    device/samsung/aries-common/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
-    device/samsung/aries-common/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-    device/samsung/aries-common/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
-    device/samsung/aries-common/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
-    device/samsung/aries-common/s3c-keypad.kcm:system/usr/keychars/s3c-keypad.kcm
+    device/samsung/fascinatemtd/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl
 
-# Input device calibration files
+# hak
 PRODUCT_COPY_FILES += \
-    device/samsung/aries-common/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
+	device/samsung/aries-common/bml_over_mtd.sh:bml_over_mtd.sh
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    setup_fs \
-    bml_over_mtd
-
-# Usb accessory
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
-# These are the OpenMAX IL configuration files
+# ppp
 PRODUCT_COPY_FILES += \
-    hardware/samsung/exynos3/s5pc110/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
-    device/samsung/aries-common/media_profiles.xml:system/etc/media_profiles.xml \
-    device/samsung/aries-common/media_codecs.xml:system/etc/media_codecs.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
+	device/samsung/fascinatemtd/ip-up:system/etc/ppp/ip-up
 
-# These are the OpenMAX IL modules
-PRODUCT_PACKAGES += \
-    libSEC_OMX_Core \
-    libOMX.SEC.AVC.Decoder \
-    libOMX.SEC.M4V.Decoder \
-    libOMX.SEC.M4V.Encoder \
-    libOMX.SEC.AVC.Encoder
-
-# Misc other modules
-PRODUCT_PACKAGES += \
-    lights.aries \
-    sensors.aries \
-    power.s5pc110 \
-    hwcomposer.s5pc110 \
-    camera.aries \
-    audio.primary.aries \
-    audio.a2dp.default \
-    audio.usb.default \
-    libs3cjpeg
-
-# Wi-Fi
-PRODUCT_PACKAGES += \
-    libwpa_client \
-    hostapd \
-    hostapd_default.conf \
-    dhcpcd.conf \
-    wpa_supplicant \
-    wpa_supplicant.conf
-
-# PVR
-PRODUCT_PACKAGES += \
-    pvrsrvinit
-
+# audio
 PRODUCT_COPY_FILES += \
-    device/samsung/fascinatemtd/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/samsung/aries-common/libaudio/audio_effects.conf:system/vendor/etc/audio_effects.conf
-
-# Libs
-PRODUCT_PACKAGES += \
-    libstagefrighthw
-
-# Bluetooth MAC Address
-PRODUCT_PACKAGES += \
-    bdaddr_read
+	device/samsung/fascinatemtd/libaudio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
-    Torch \
-    DeviceSettings
-
-# Libnetcmd
-PRODUCT_PACKAGES += \
-    libnetcmdiface
-
-# Open Source Charging Mode
-PRODUCT_PACKAGES += \
-    device_healthd \
-    device_healthd_images
-
-# f2fs
-PRODUCT_PACKAGES += \
-    fsck.f2fs \
-    mkfs.f2fs \
-    fibmap.f2fs
+	Torch
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
+	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
-# The OpenGL ES API level that is natively supported by this device.
-# This is a 16.16 fixed point number
-PRODUCT_PROPERTY_OVERRIDES := \
-    ro.opengles.version=131072 \
-    debug.hwui.render_dirty_regions=false \
-    ro.zygote.disable_gl_preload=true
-
-# Support for Browser's saved page feature. This allows
-# for pages saved on previous versions of the OS to be
-# viewed on the current OS.
-PRODUCT_PACKAGES += \
-    libskia_legacy
-
-# These are the hardware-specific settings that are stored in system properties.
-# Note that the only such settings should be the ones that are too low-level to
-# be reachable from resources or other mechanisms.
+# Generic CDMA stuff
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.media.legacy-drm=1 \
-    wifi.interface=wlan0 \
-    ro.phone_storage=1 \
-    ro.config.low_ram=true \
-    ro.sys.fw.bg_apps_limit=16 \
-    ro.config.max_starting_bg=10 \
-    ro.ksm.default=1
-
-# ART
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-flags=--no-watch-dog \
-    dalvik.vm.dex2oat-filter=balanced \
-    dalvik.vm.image-dex2oat-filter=speed
-
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1 \
-    camera2.port.operation_time_ms=5000
-
-# SGX540 is slower with the scissor optimization enabled
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hwui.disable_scissor_opt=true
-
-# Use high-end graphics to work around notification bug
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.force_highendgfx=true
-
-# Enable Google-specific location features,
-# like NetworkLocationProvider and LocationCollector
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.com.google.networklocation=1
-
-# We have sacrificed /cache for a larger /system, so it's not large enough for dalvik cache
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
-
-# SELinux
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.selinux=1
-
-# Extended JNI checks
-# The extended JNI checks will cause the system to run more slowly,
-# but they can spot a variety of nasty bugs
-# before they have a chance to cause problems.
-# Default=true for development builds, set by android buildsystem.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0 \
-    dalvik.vm.checkjni=false
-
-# Set default USB interface and default to internal SD as /sdcard
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
-# ART
-PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
-    --compiler-filter=balanced
+       ro.telephony.default_network=4 \
+       ro.ril.def.agps.mode=2 \
+       ro.cdma.homesystem=64,65,76,77,78,79,80,81,82,83 \
+       ro.cdma.data_retry_config=default_randomization=2000,0,0,120000,180000,540000,960000 \
+       ro.cdma.otaspnumschema=SELC,3,00,07,80,87,88,99 \
+       ro.config.vc_call_vol_steps=15 \
+       net.cdma.pppd.authtype=require-chap \
+       net.cdma.datalinkinterface=/dev/ttyCDMA0 \
+       net.cdma.ppp.interface=ppp0 \
+       net.connectivity.type=CDMA1 \
+       net.interfaces.defaultroute=cdma \
+       mobiledata.interfaces=ppp0 \
+       ro.ril.samsung_cdma=true \
+       ro.telephony.ril.v3=datacall
 
 # decoy recovery kernel
 PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/recovery_kernel:recovery_kernel
 
-include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
-
-$(call add-product-dex-preopt-module-config,services,--compiler-filter=speed)
-
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+# Inherit Aries common device configuration.
+$(call inherit-product, device/samsung/aries-common/device_base.mk)
 
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
