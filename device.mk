@@ -40,11 +40,14 @@
 # application settings that are stored in resourced.
 
 # This device is hdpi
-PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
-PRODUCT_LOCALES += hdpi
 
 DEVICE_PACKAGE_OVERLAYS := device/samsung/aries-common/overlay
+
+# Build messaging app
+PRODUCT_PACKAGES += \
+	messaging
 
 # Init files
 PRODUCT_COPY_FILES += \
@@ -56,7 +59,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/fstab.aries:root/fstab.aries \
     device/samsung/aries-common/ueventd.aries.rc:root/ueventd.aries.rc \
     device/samsung/aries-common/setupdatadata.sh:root/sbin/setupdatadata.sh \
-    device/samsung/aries-common/umountdatadata.sh:root/sbin/umountdatadata.sh \
     device/samsung/aries-common/bml_over_mtd.sh:bml_over_mtd.sh \
     device/samsung/fascinatemtd/updater.sh:updater.sh \
     device/samsung/fascinatemtd/twrp.fstab:recovery/root/etc/twrp.fstab
@@ -114,6 +116,10 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libs3cjpeg
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -122,6 +128,7 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
+
 
 # PVR
 PRODUCT_PACKAGES += \
@@ -147,11 +154,6 @@ PRODUCT_PACKAGES += \
 # Libnetcmd
 PRODUCT_PACKAGES += \
     libnetcmdiface
-
-# Open Source Charging Mode
-PRODUCT_PACKAGES += \
-    device_healthd \
-    device_healthd_images
 
 # f2fs
 PRODUCT_PACKAGES += \
@@ -196,13 +198,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.low_ram=true \
     ro.sys.fw.bg_apps_limit=16 \
     ro.config.max_starting_bg=10 \
-    ro.ksm.default=1
+    ro.ksm.default=1 \
+    media.stagefright.use-awesome=true
 
 # ART
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
     dalvik.vm.dex2oat-filter=balanced \
     dalvik.vm.image-dex2oat-filter=speed
+
+# Force dex2oat to not use swap file
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -240,9 +247,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
     dalvik.vm.checkjni=false
 
-# Set default USB interface and default to internal SD as /sdcard
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+# Disable strict mode
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.strictmode.visual=0 \
+    persist.sys.strictmode.disable=1
 
 # ART
 PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \

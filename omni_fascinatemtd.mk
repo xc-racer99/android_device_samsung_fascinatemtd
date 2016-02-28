@@ -29,7 +29,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Bootanimation
-TARGET_BOOTANIMATION_SIZE := 480x320
+TARGET_BOOTANIMATION_SIZE := 640x362
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/fascinatemtd/fascinatemtd.mk)

@@ -30,23 +30,18 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a8
 TARGET_CPU_VARIANT := cortex-a8
-TARGET_CPU_SMP := false
-KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(strip $(HOST_OS))-x86/arm/arm-eabi-4.7/bin/"
 
 # Bionic stuff
 BOARD_USES_LEGACY_MMAP := true
-TARGET_NEEDS_BIONIC_MD5 := true
 TARGET_NEEDS_BIONIC_PRELINK_SUPPORT := true
 TARGET_ENABLE_NON_PIE_SUPPORT := true
-MALLOC_IMPL := dlmalloc
 
-# Dalvik startup with low memory footprint
-TARGET_ARCH_LOWMEM := true
+# Use longer timeouts for slow CPU
+TARGET_NEEDS_LONG_TIMEOUTS := true
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-TARGET_PROVIDES_INIT := true
 TARGET_BOARD_PLATFORM := s5pc110
 TARGET_BOOTLOADER_BOARD_NAME := aries
 
@@ -57,8 +52,8 @@ TARGET_KERNEL_CONFIG := omni_fascinatemtd_defconfig
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/fascinatemtd
 
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
+# Browser
+TARGET_USES_AOSP_BROWSER := true
 
 # Audio
 TARGET_PROVIDES_LIBAUDIO := true
@@ -86,6 +81,7 @@ BOARD_KERNEL_BASE := 0x32000000
 BOARD_KERNEL_PAGESIZE := 4096
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 7864320
+BOARD_CACHEIMAGE_PARTITION_SIZE := 41943040
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 629145600
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1665130496
 BOARD_FLASH_BLOCK_SIZE := 4096
@@ -119,13 +115,9 @@ ifeq ($(HOST_OS),linux)
     DONT_DEXPREOPT_PREBUILTS := true
 endif
 
-# ART
-WITH_ART_SMALL_MODE := true
-
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USES_BML_OVER_MTD := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/fascinatemtd/shbootimg.mk
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;"
@@ -133,15 +125,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/fascinatemtd/fstab.aries
 RECOVERY_FSTAB_VERSION := 2
 
 # Open Source Charging Mode
-BOARD_USES_OWN_CHARGER := true
-BOARD_CHARGER_IMG_PATH := device/samsung/aries-common/charger/images
-BOARD_POWER_SUPPLY_PATH := /sys/class/power_supply
-BOARD_BATTERY_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/battery
-BOARD_AC_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/ac
-BOARD_USB_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/usb
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_DIM_SCREEN_BRIGHTNESS := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/aries-common/recovery/graphics.c
 
 # Boot Animation
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
@@ -164,50 +148,12 @@ TARGET_DISABLE_TRIPLE_BUFFERING := false
 BOARD_ALLOW_EGL_HIBERNATION := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-HWUI_COMPILE_FOR_PERF := true
 
 # hwcomposer: custom vsync ioctl
 BOARD_CUSTOM_VSYNC_IOCTL := true
 
-# Screenrecord
-BOARD_SCREENRECORD_LANDSCAPE_ONLY := true
-
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/fascinatemtd/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bdaddr_read.te \
-    bluetooth.te \
-    debuggerd.te \
-    device.te \
-    file.te \
-    file_contexts \
-    geomagneticd.te \
-    gpsd.te \
-    init.te \
-    installd.te \
-    kernel.te \
-    lvm.te \
-    mediaserver.te \
-    netd.te \
-    orientationd.te \
-    platform_app.te \
-    property_contexts \
-    pvrsrvinit.te \
-    radio.te \
-    recovery.te \
-    rild.te \
-    sdcardd.te \
-    servicemanager.te \
-    shared_relro.te \
-    shell.te \
-    surfaceflinger.te \
-    system_app.te \
-    system_server.te \
-    ueventd.te \
-    untrusted_app.te \
-    zygote.te
+BOARD_SEPOLICY_DIRS += device/samsung/aries-common/sepolicy
 
 # Include aries specific stuff
 -include device/samsung/aries-common/Android.mk
