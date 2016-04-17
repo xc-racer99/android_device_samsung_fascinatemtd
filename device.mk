@@ -83,10 +83,6 @@ PRODUCT_PACKAGES += \
     setup_fs \
     bml_over_mtd
 
-# Usb accessory
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
     hardware/samsung/exynos3/s5pc110/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
@@ -154,16 +150,6 @@ PRODUCT_PACKAGES += \
     Torch \
     DeviceSettings
 
-# Libnetcmd
-PRODUCT_PACKAGES += \
-    libnetcmdiface
-
-# f2fs
-PRODUCT_PACKAGES += \
-    fsck.f2fs \
-    mkfs.f2fs \
-    fibmap.f2fs
-
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -184,12 +170,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.opengles.version=131072 \
     debug.hwui.render_dirty_regions=false \
     ro.zygote.disable_gl_preload=true
-
-# Support for Browser's saved page feature. This allows
-# for pages saved on previous versions of the OS to be
-# viewed on the current OS.
-PRODUCT_PACKAGES += \
-    libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
@@ -231,10 +211,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.com.google.networklocation=1
-
-# We have sacrificed /cache for a larger /system, so it's not large enough for dalvik cache
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
 
 # SELinux
 PRODUCT_PROPERTY_OVERRIDES += \

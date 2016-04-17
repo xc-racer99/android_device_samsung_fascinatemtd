@@ -21,8 +21,6 @@
 -include vendor/samsung/fascinatemtd/BoardConfigVendor.mk
 
 BOARD_USES_GENERIC_AUDIO := false
-AUDIO_FEATURE_ENABLED_INCALL_MUSIC := false
-AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
 
 TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
@@ -61,10 +59,6 @@ TARGET_USES_AOSP_BROWSER := true
 TARGET_PROVIDES_LIBAUDIO := true
 
 # Camera
-USE_CAMERA_STUB := false
-ifeq ($(USE_CAMERA_STUB),false)
-BOARD_CAMERA_LIBRARIES := libcamera
-endif
 BOARD_CAMERA_HAVE_ISO := true
 BOARD_CAMERA_HAVE_FLASH := true
 
@@ -106,9 +100,7 @@ WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/aries-common/libbt_vndcfg.txt
 
 # Vold
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
-BOARD_USES_MULTIPLE_SDCARD_FS := true
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
