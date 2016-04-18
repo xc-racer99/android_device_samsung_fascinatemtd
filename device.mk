@@ -120,6 +120,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# GPS Shim Lib
+PRODUCT_PACKAGES += libdmitry
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwpa_client \
