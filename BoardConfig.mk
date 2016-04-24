@@ -149,6 +149,11 @@ BOARD_CUSTOM_VSYNC_IOCTL := true
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/aries-common/sepolicy
 
+USE_SUPERSU := true
+ifeq ($(USE_SUPERSU),true)
+    BOARD_SEPOLICY_DIRS += device/samsung/aries-common/supersu/sepolicy
+endif
+
 # Include aries specific stuff
 -include device/samsung/aries-common/Android.mk
 
