@@ -45,10 +45,6 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 DEVICE_PACKAGE_OVERLAYS := device/samsung/aries-common/overlay
 
-# Build messaging app
-PRODUCT_PACKAGES += \
-	messaging
-
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/fascinatemtd/init.aries.rc:root/init.aries.rc \
